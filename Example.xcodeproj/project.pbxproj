@@ -153,7 +153,8 @@
 				EA62359B1925708D00D4FB19 /* DZLProtocolImplementation.h */,
 				EA62359C1925708D00D4FB19 /* Private */,
 			);
-			path = DZLObjcAdditions;
+			name = DZLObjcAdditions;
+			path = ../DZLObjcAdditions;
 			sourceTree = "<group>";
 		};
 		EA62359C1925708D00D4FB19 /* Private */ = {

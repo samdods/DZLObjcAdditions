@@ -1,6 +1,6 @@
 //
 //  NSObject+DZLObjcAdditions.h
-//  MixinExample
+//  DZLObjcAdditions
 //
 //  Created by Sam Dods on 15/05/2014.
 //  Copyright (c) 2014 Sam Dods. All rights reserved.
@@ -12,13 +12,13 @@
 
 + (void)dzl_mixinSafeClass:(Class)mixinClass;
 
-+ (void)dzl_mixinExtraClass:(Class)mixinClass;
++ (void)dzl_mixinCombineClass:(Class)mixinClass;
 
 @end
-
 
 
 @interface DZLMixin : NSProxy
-+ (SEL)underlyingSelectorForSelector:(SEL)selector class:(Class)mixinClass;
-@end
 
++ (SEL)underlyingSelectorForSelector:(SEL)selector class:(Class)mixinClass;
+
+@end
