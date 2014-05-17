@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Sam Dods. All rights reserved.
 //
 
-#import "DZLCategoryCombine.h"
-#import "DZLCategorySafe.h"
-#import "DZLMixinProtocol.h"
+#import "DZLImplementationCombine.h"
+#import "DZLImplementationSafe.h"
+#import "DZLProtocolImplementation.h"
 #import "DZLViewControllerMixin.h"
 
 @protocol_implementation(TestProtocol)
 
 - (void)doSomethingMagic
 {
-  
+  NSLog(@"in default doSomethingMagic");
 }
 
 @end
@@ -25,13 +25,16 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+  NSLog(@"in safe viewWillAppear:");
+  
   safeSuper(animated);
 }
 
 - (BOOL)isSomething
 {
-  BOOL isSomething = (BOOL)safeSuper();
-  return isSomething;
+  NSLog(@"in safe isSomething");
+  
+  return (BOOL)safeSuper();
 }
 
 @end
@@ -41,22 +44,18 @@
 
 + (BOOL)shouldDoSomethingWithObject:(id)object
 {
-  NSLog(@"before should");
+  NSLog(@"in combined shouldDoSomethingWithObject:");
   
   BOOL should = (BOOL)combineOriginal(object);
-  
-  NSLog(@"after should");
   
   return should;
 }
 
 - (void)viewDidLoad
 {
-  NSLog(@"before");
+  NSLog(@"in combined viewDidLoad");
   
   combineOriginal();
-
-  NSLog(@"after");
 }
 
 @end
@@ -65,11 +64,9 @@
 
 - (void)viewDidLoad
 {
-  NSLog(@"before2");
+  NSLog(@"in even more combined viewDidLoad");
   
   combineOriginal();
-  
-  NSLog(@"after2");
 }
 
 @end
