@@ -1,4 +1,4 @@
-Handy Objective-C 'extensions'
+Handy Objective-C 'Extensions'
 ================
 
 ### @implementation_combine
