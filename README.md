@@ -16,4 +16,20 @@ Like a normal category implementation, but any method already implemented on the
 An implementation for a protocol specification. Any optional protocol methods may be implemented here and these methods will automatically be added to any class that conforms to the protocol. (Anyone familiar with Ruby could think of this as an Objective-C equivalent to a mixin.)
 
 
-# @implementation_combine
+# Examples
+
+### @implementation_combine
+
+```objc
+@implementation_combine(MainViewController, CombinedAdditions)
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  combineOriginal(animated);
+  
+  [Analytics trackMainViewDidAppear];
+}
+
+@end
+```
+
