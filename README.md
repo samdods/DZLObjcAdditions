@@ -87,7 +87,9 @@ This is useful if you want to provide default implementations for optional proto
 
 # Installing
 
-Copy the DZLObjcAdditions directory into your project. Import the relevant header files as you need them:
+Available as a CocoaPod.
+
+Alternatively, you can copy the DZLObjcAdditions directory into your project. Import the relevant header files as you need them:
 * **@implementation_combine** defined in DZLImplementationCombine.h
 * **@implementation_safe** defined in DZLImplementationSafe.h
 * **@protocol_implementation** defined in DZLProtocolImplementation.h
