@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface DZLViewController : UIViewController
+@interface DZLViewController : BaseViewController
+
++ (BOOL)shouldDoSomethingWithObject:(id)object;
 
 @end

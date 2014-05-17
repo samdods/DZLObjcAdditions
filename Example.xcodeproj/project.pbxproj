@@ -19,8 +19,9 @@
 		EA4E92261922B43C00BE01DE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E92251922B43C00BE01DE /* XCTest.framework */; };
 		EA4E92271922B43C00BE01DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E92061922B43C00BE01DE /* Foundation.framework */; };
 		EA4E92281922B43C00BE01DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E920A1922B43C00BE01DE /* UIKit.framework */; };
-		EA4E92301922B43C00BE01DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA4E922E1922B43C00BE01DE /* InfoPlist.strings */; };
-		EA4E92321922B43C00BE01DE /* MixinExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4E92311922B43C00BE01DE /* MixinExampleTests.m */; };
+		EA6235841922C2ED00D4FB19 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6235831922C2ED00D4FB19 /* BaseViewController.m */; };
+		EA62358A1922E0A200D4FB19 /* DZLViewControllerMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6235891922E05B00D4FB19 /* DZLViewControllerMixin.m */; };
+		EA6235A11925708D00D4FB19 /* NSObject+DZLObjcAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA62359F1925708D00D4FB19 /* NSObject+DZLObjcAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,25 +35,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EA4E92031922B43C00BE01DE /* MixinExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixinExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA4E92031922B43C00BE01DE /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4E92061922B43C00BE01DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA4E92081922B43C00BE01DE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EA4E920A1922B43C00BE01DE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		EA4E920E1922B43C00BE01DE /* MixinExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MixinExample-Info.plist"; sourceTree = "<group>"; };
+		EA4E920E1922B43C00BE01DE /* Example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example-Info.plist"; sourceTree = "<group>"; };
 		EA4E92101922B43C00BE01DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EA4E92121922B43C00BE01DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EA4E92141922B43C00BE01DE /* MixinExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MixinExample-Prefix.pch"; sourceTree = "<group>"; };
+		EA4E92141922B43C00BE01DE /* Example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Prefix.pch"; sourceTree = "<group>"; };
 		EA4E92151922B43C00BE01DE /* DZLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZLAppDelegate.h; sourceTree = "<group>"; };
 		EA4E92161922B43C00BE01DE /* DZLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZLAppDelegate.m; sourceTree = "<group>"; };
 		EA4E92191922B43C00BE01DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA4E921B1922B43C00BE01DE /* DZLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZLViewController.h; sourceTree = "<group>"; };
 		EA4E921C1922B43C00BE01DE /* DZLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZLViewController.m; sourceTree = "<group>"; };
 		EA4E921E1922B43C00BE01DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		EA4E92241922B43C00BE01DE /* MixinExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixinExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA4E92241922B43C00BE01DE /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4E92251922B43C00BE01DE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		EA4E922D1922B43C00BE01DE /* MixinExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MixinExampleTests-Info.plist"; sourceTree = "<group>"; };
-		EA4E922F1922B43C00BE01DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EA4E92311922B43C00BE01DE /* MixinExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixinExampleTests.m; sourceTree = "<group>"; };
+		EA6235821922C2ED00D4FB19 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		EA6235831922C2ED00D4FB19 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		EA6235891922E05B00D4FB19 /* DZLViewControllerMixin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZLViewControllerMixin.m; sourceTree = "<group>"; };
+		EA62358E1923480200D4FB19 /* DZLViewControllerMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLViewControllerMixin.h; sourceTree = "<group>"; };
+		EA6235991925708D00D4FB19 /* DZLCategoryCombine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLCategoryCombine.h; sourceTree = "<group>"; };
+		EA62359A1925708D00D4FB19 /* DZLCategorySafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLCategorySafe.h; sourceTree = "<group>"; };
+		EA62359B1925708D00D4FB19 /* DZLMixinProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLMixinProtocol.h; sourceTree = "<group>"; };
+		EA62359E1925708D00D4FB19 /* NSObject+DZLObjcAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DZLObjcAdditions.h"; sourceTree = "<group>"; };
+		EA62359F1925708D00D4FB19 /* NSObject+DZLObjcAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DZLObjcAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +89,7 @@
 		EA4E91FA1922B43C00BE01DE = {
 			isa = PBXGroup;
 			children = (
-				EA4E920C1922B43C00BE01DE /* MixinExample */,
-				EA4E922B1922B43C00BE01DE /* MixinExampleTests */,
+				EA4E920C1922B43C00BE01DE /* Example */,
 				EA4E92051922B43C00BE01DE /* Frameworks */,
 				EA4E92041922B43C00BE01DE /* Products */,
 			);
@@ -92,8 +98,8 @@
 		EA4E92041922B43C00BE01DE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EA4E92031922B43C00BE01DE /* MixinExample.app */,
-				EA4E92241922B43C00BE01DE /* MixinExampleTests.xctest */,
+				EA4E92031922B43C00BE01DE /* Example.app */,
+				EA4E92241922B43C00BE01DE /* ExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,9 +115,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EA4E920C1922B43C00BE01DE /* MixinExample */ = {
+		EA4E920C1922B43C00BE01DE /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				EA6235981925708D00D4FB19 /* DZLObjcAdditions */,
 				EA4E92151922B43C00BE01DE /* DZLAppDelegate.h */,
 				EA4E92161922B43C00BE01DE /* DZLAppDelegate.m */,
 				EA4E92181922B43C00BE01DE /* Main.storyboard */,
@@ -119,45 +126,51 @@
 				EA4E921C1922B43C00BE01DE /* DZLViewController.m */,
 				EA4E921E1922B43C00BE01DE /* Images.xcassets */,
 				EA4E920D1922B43C00BE01DE /* Supporting Files */,
+				EA6235821922C2ED00D4FB19 /* BaseViewController.h */,
+				EA6235831922C2ED00D4FB19 /* BaseViewController.m */,
+				EA62358E1923480200D4FB19 /* DZLViewControllerMixin.h */,
+				EA6235891922E05B00D4FB19 /* DZLViewControllerMixin.m */,
 			);
-			path = MixinExample;
+			path = Example;
 			sourceTree = "<group>";
 		};
 		EA4E920D1922B43C00BE01DE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EA4E920E1922B43C00BE01DE /* MixinExample-Info.plist */,
+				EA4E920E1922B43C00BE01DE /* Example-Info.plist */,
 				EA4E920F1922B43C00BE01DE /* InfoPlist.strings */,
 				EA4E92121922B43C00BE01DE /* main.m */,
-				EA4E92141922B43C00BE01DE /* MixinExample-Prefix.pch */,
+				EA4E92141922B43C00BE01DE /* Example-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EA4E922B1922B43C00BE01DE /* MixinExampleTests */ = {
+		EA6235981925708D00D4FB19 /* DZLObjcAdditions */ = {
 			isa = PBXGroup;
 			children = (
-				EA4E92311922B43C00BE01DE /* MixinExampleTests.m */,
-				EA4E922C1922B43C00BE01DE /* Supporting Files */,
+				EA6235991925708D00D4FB19 /* DZLCategoryCombine.h */,
+				EA62359A1925708D00D4FB19 /* DZLCategorySafe.h */,
+				EA62359B1925708D00D4FB19 /* DZLMixinProtocol.h */,
+				EA62359C1925708D00D4FB19 /* Private */,
 			);
-			path = MixinExampleTests;
+			path = DZLObjcAdditions;
 			sourceTree = "<group>";
 		};
-		EA4E922C1922B43C00BE01DE /* Supporting Files */ = {
+		EA62359C1925708D00D4FB19 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				EA4E922D1922B43C00BE01DE /* MixinExampleTests-Info.plist */,
-				EA4E922E1922B43C00BE01DE /* InfoPlist.strings */,
+				EA62359E1925708D00D4FB19 /* NSObject+DZLObjcAdditions.h */,
+				EA62359F1925708D00D4FB19 /* NSObject+DZLObjcAdditions.m */,
 			);
-			name = "Supporting Files";
+			path = Private;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EA4E92021922B43C00BE01DE /* MixinExample */ = {
+		EA4E92021922B43C00BE01DE /* Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA4E92351922B43C00BE01DE /* Build configuration list for PBXNativeTarget "MixinExample" */;
+			buildConfigurationList = EA4E92351922B43C00BE01DE /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
 				EA4E91FF1922B43C00BE01DE /* Sources */,
 				EA4E92001922B43C00BE01DE /* Frameworks */,
@@ -167,14 +180,14 @@
 			);
 			dependencies = (
 			);
-			name = MixinExample;
+			name = Example;
 			productName = MixinExample;
-			productReference = EA4E92031922B43C00BE01DE /* MixinExample.app */;
+			productReference = EA4E92031922B43C00BE01DE /* Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EA4E92231922B43C00BE01DE /* MixinExampleTests */ = {
+		EA4E92231922B43C00BE01DE /* ExampleTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA4E92381922B43C00BE01DE /* Build configuration list for PBXNativeTarget "MixinExampleTests" */;
+			buildConfigurationList = EA4E92381922B43C00BE01DE /* Build configuration list for PBXNativeTarget "ExampleTests" */;
 			buildPhases = (
 				EA4E92201922B43C00BE01DE /* Sources */,
 				EA4E92211922B43C00BE01DE /* Frameworks */,
@@ -185,9 +198,9 @@
 			dependencies = (
 				EA4E922A1922B43C00BE01DE /* PBXTargetDependency */,
 			);
-			name = MixinExampleTests;
+			name = ExampleTests;
 			productName = MixinExampleTests;
-			productReference = EA4E92241922B43C00BE01DE /* MixinExampleTests.xctest */;
+			productReference = EA4E92241922B43C00BE01DE /* ExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -205,7 +218,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EA4E91FE1922B43C00BE01DE /* Build configuration list for PBXProject "MixinExample" */;
+			buildConfigurationList = EA4E91FE1922B43C00BE01DE /* Build configuration list for PBXProject "Example" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -218,8 +231,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EA4E92021922B43C00BE01DE /* MixinExample */,
-				EA4E92231922B43C00BE01DE /* MixinExampleTests */,
+				EA4E92021922B43C00BE01DE /* Example */,
+				EA4E92231922B43C00BE01DE /* ExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -239,7 +252,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA4E92301922B43C00BE01DE /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +262,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA6235841922C2ED00D4FB19 /* BaseViewController.m in Sources */,
+				EA62358A1922E0A200D4FB19 /* DZLViewControllerMixin.m in Sources */,
+				EA6235A11925708D00D4FB19 /* NSObject+DZLObjcAdditions.m in Sources */,
 				EA4E92131922B43C00BE01DE /* main.m in Sources */,
 				EA4E921D1922B43C00BE01DE /* DZLViewController.m in Sources */,
 				EA4E92171922B43C00BE01DE /* DZLAppDelegate.m in Sources */,
@@ -260,7 +275,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA4E92321922B43C00BE01DE /* MixinExampleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +283,7 @@
 /* Begin PBXTargetDependency section */
 		EA4E922A1922B43C00BE01DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EA4E92021922B43C00BE01DE /* MixinExample */;
+			target = EA4E92021922B43C00BE01DE /* Example */;
 			targetProxy = EA4E92291922B43C00BE01DE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -289,14 +303,6 @@
 				EA4E92191922B43C00BE01DE /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		EA4E922E1922B43C00BE01DE /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA4E922F1922B43C00BE01DE /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -378,9 +384,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MixinExample/MixinExample-Prefix.pch";
-				INFOPLIST_FILE = "MixinExample/MixinExample-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "MixinExample/Example-Prefix.pch";
+				INFOPLIST_FILE = "MixinExample/Example-Info.plist";
+				PRODUCT_NAME = Example;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -391,9 +397,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MixinExample/MixinExample-Prefix.pch";
-				INFOPLIST_FILE = "MixinExample/MixinExample-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "MixinExample/Example-Prefix.pch";
+				INFOPLIST_FILE = "MixinExample/Example-Info.plist";
+				PRODUCT_NAME = Example;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -413,8 +419,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "MixinExampleTests/MixinExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "MixinExampleTests/ExampleTests-Info.plist";
+				PRODUCT_NAME = ExampleTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -431,8 +437,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MixinExample/MixinExample-Prefix.pch";
-				INFOPLIST_FILE = "MixinExampleTests/MixinExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "MixinExampleTests/ExampleTests-Info.plist";
+				PRODUCT_NAME = ExampleTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -441,7 +447,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EA4E91FE1922B43C00BE01DE /* Build configuration list for PBXProject "MixinExample" */ = {
+		EA4E91FE1922B43C00BE01DE /* Build configuration list for PBXProject "Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EA4E92331922B43C00BE01DE /* Debug */,
@@ -450,21 +456,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EA4E92351922B43C00BE01DE /* Build configuration list for PBXNativeTarget "MixinExample" */ = {
+		EA4E92351922B43C00BE01DE /* Build configuration list for PBXNativeTarget "Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EA4E92361922B43C00BE01DE /* Debug */,
 				EA4E92371922B43C00BE01DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		EA4E92381922B43C00BE01DE /* Build configuration list for PBXNativeTarget "MixinExampleTests" */ = {
+		EA4E92381922B43C00BE01DE /* Build configuration list for PBXNativeTarget "ExampleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EA4E92391922B43C00BE01DE /* Debug */,
 				EA4E923A1922B43C00BE01DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
