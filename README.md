@@ -20,7 +20,7 @@ An implementation for a protocol specification. Any optional protocol methods ma
 
 ### @implementation_combine
 
-This is really useful if you're interested in the separation of concerns. For example, you might be implementing usage analytics in your app. You don't want to clutter your view controller with analytics code, because it doesn't belong there. Instead you can add a "combine" category, which effectively allows you to add new functionality to the original method.
+This is really useful if you're trying to separate concerns. For example, you might be implementing usage analytics in your app. You don't want to clutter your view controller with analytics code, because it doesn't belong there. Instead you can add a "combine" category, which effectively allows you to add new functionality to the original method.
 
 ```objc
 @implementation_combine(MainViewController, CombinedAdditions)
@@ -35,3 +35,36 @@ This is really useful if you're interested in the separation of concerns. For ex
 @end
 ```
 
+### @implementation_safe
+
+This is useful if you want to add a method to a class without risking replacing an existing implementation if one exists.
+
+```
+@implementation_safe(MainViewController, SafeAdditions)
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  // do something here.
+  
+  safeSuper(animated);
+  
+  // do some more stuff here.
+}
+
+@end
+```
+
+### @protocol_implementation
+
+This is useful if you want to provide default implementations for optional protocol methods.
+
+```
+@protocol_implementation(Talkative)
+
+- (void)saySomething
+{
+  NSLog(@"Hello there!");
+}
+
+@end
+```
