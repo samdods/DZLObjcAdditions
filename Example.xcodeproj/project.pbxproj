@@ -55,9 +55,9 @@
 		EA6235831922C2ED00D4FB19 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		EA6235891922E05B00D4FB19 /* DZLViewControllerMixin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZLViewControllerMixin.m; sourceTree = "<group>"; };
 		EA62358E1923480200D4FB19 /* DZLViewControllerMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLViewControllerMixin.h; sourceTree = "<group>"; };
-		EA6235991925708D00D4FB19 /* DZLCategoryCombine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLCategoryCombine.h; sourceTree = "<group>"; };
-		EA62359A1925708D00D4FB19 /* DZLCategorySafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLCategorySafe.h; sourceTree = "<group>"; };
-		EA62359B1925708D00D4FB19 /* DZLMixinProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLMixinProtocol.h; sourceTree = "<group>"; };
+		EA6235991925708D00D4FB19 /* DZLImplementationCombine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLImplementationCombine.h; sourceTree = "<group>"; };
+		EA62359A1925708D00D4FB19 /* DZLImplementationSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLImplementationSafe.h; sourceTree = "<group>"; };
+		EA62359B1925708D00D4FB19 /* DZLProtocolImplementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLProtocolImplementation.h; sourceTree = "<group>"; };
 		EA62359E1925708D00D4FB19 /* NSObject+DZLObjcAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DZLObjcAdditions.h"; sourceTree = "<group>"; };
 		EA62359F1925708D00D4FB19 /* NSObject+DZLObjcAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DZLObjcAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,9 +148,9 @@
 		EA6235981925708D00D4FB19 /* DZLObjcAdditions */ = {
 			isa = PBXGroup;
 			children = (
-				EA6235991925708D00D4FB19 /* DZLCategoryCombine.h */,
-				EA62359A1925708D00D4FB19 /* DZLCategorySafe.h */,
-				EA62359B1925708D00D4FB19 /* DZLMixinProtocol.h */,
+				EA6235991925708D00D4FB19 /* DZLImplementationCombine.h */,
+				EA62359A1925708D00D4FB19 /* DZLImplementationSafe.h */,
+				EA62359B1925708D00D4FB19 /* DZLProtocolImplementation.h */,
 				EA62359C1925708D00D4FB19 /* Private */,
 			);
 			path = DZLObjcAdditions;
@@ -384,8 +384,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MixinExample/Example-Prefix.pch";
-				INFOPLIST_FILE = "MixinExample/Example-Info.plist";
+				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
+				INFOPLIST_FILE = "Example/Example-Info.plist";
 				PRODUCT_NAME = Example;
 				WRAPPER_EXTENSION = app;
 			};
@@ -397,8 +397,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MixinExample/Example-Prefix.pch";
-				INFOPLIST_FILE = "MixinExample/Example-Info.plist";
+				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
+				INFOPLIST_FILE = "Example/Example-Info.plist";
 				PRODUCT_NAME = Example;
 				WRAPPER_EXTENSION = app;
 			};

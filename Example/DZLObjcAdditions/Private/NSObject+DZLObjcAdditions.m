@@ -1,6 +1,6 @@
 //
 //  NSObject+DZLObjcAdditions.m
-//  MixinExample
+//  DZLObjcAdditions
 //
 //  Created by Sam Dods on 15/05/2014.
 //  Copyright (c) 2014 Sam Dods. All rights reserved.

@@ -1,6 +1,6 @@
 //
-//  NSObject+DZLMixinProtocol.h
-//  MixinExample
+//  DZLProtocolImplementation.h
+//  DZLObjcAdditions
 //
 //  Created by Sam Dods on 15/05/2014.
 //  Copyright (c) 2014 Sam Dods. All rights reserved.
