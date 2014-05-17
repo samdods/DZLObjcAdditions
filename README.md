@@ -96,7 +96,7 @@ Copy the DZLObjcAdditions directory into your project. Import the relevant heade
 
 # Warning
 
-This library makes use of the Objective-C runtime's ability to 'swizzle' methods. The implementation is very simple and much cleaner than other examples of achieving similar results, e.g. block injection. While some people would advise against extensive method swizzling, I see no harm in it when there is a valid use-case.
+This library makes use of the Objective-C ability to 'swizzle' methods at runtime. The implementation is very simple and I believe it is much cleaner than other examples of achieving similar results, e.g. block injection. While some people would advise against extensive method swizzling, I see no harm in it when there is a valid use-case.
 
 # Twitter
 
