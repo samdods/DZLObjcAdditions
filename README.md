@@ -23,7 +23,9 @@ An implementation for a protocol specification. Any optional protocol methods ma
 This is really useful if you're trying to separate concerns. For example, you might be implementing usage analytics in your app. You don't want to clutter your view controller with analytics code, because it doesn't belong there. Instead you can add a "combine" category, which effectively allows you to add new functionality to the original method.
 
 ```objc
-@implementation_combine(MainViewController, CombinedAdditions)
+#import "DZLImplementationCombine.h"
+
+tion_combine(MainViewController, CombinedAdditions)
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -46,6 +48,8 @@ If you need the return value from the original method, you must cast the result 
 This is useful if you want to add a method to a class without risking replacing an existing implementation if one exists.
 
 ```objc
+#import "DZLImplementationSafe.h"
+
 @implementation_safe(MainViewController, SafeAdditions)
 
 - (void)viewWillAppear:(BOOL)animated
@@ -60,17 +64,42 @@ This is useful if you want to add a method to a class without risking replacing 
 @end
 ```
 
+The call to `safeSuper` can be placed anywhere in the method, or it may be omitted.
+
+You should pass all original arguments to `safeSuper` in the same order they appear in the method selector.
+
+If you need the return value from the original method, you must cast the result of `combineOriginal` to the required type.
+
 ### @protocol_implementation
 
 This is useful if you want to provide default implementations for optional protocol methods.
 
 ```objc
+#import "DZLProtocolImplementation.h"
+
 @protocol_implementation(Talkative)
 
 - (void)saySomething
 {
-  NSLog(@"Hello there!");
+  NSLog(@"Hello world!");
 }
 
 @end
 ```
+
+# Installing
+
+Copy the DZLObjcAdditions directory into your project. Import the relevant header files as you need them:
+* **@implementation_combine** defined in DZLImplementationCombine.h
+* **@implementation_safe** defined in DZLImplementationSafe.h
+* **@protocol_implementation** defined in DZLProtocolImplementation.h
+
+# Warning
+
+This library makes use of the Objective-C runtime's ability to 'swizzle' methods. The implementation is very simple and much cleaner than other examples of achieving similar results, e.g. block injection. While some people would advise against extensive method swizzling, I see no harm in it when there is a valid use-case.
+
+# Twitter
+
+If you like this, you can [follow me on twitter][twitter] for more of the same!
+
+[twitter]: http://twitter.com/dodsios
