@@ -5,7 +5,7 @@ Some handy 'extensions' to the Objective-C language.
 
 ##### @implementation_combine(Class, CategoryName)
 
-Like a normal category implementation, but any method that already exists on the underlying class is backed up and can be called with combineOriginal(args, ...)
+<sup>Like a normal category implementation, but any method that already exists on the underlying class is backed up and can be called with combineOriginal(args, ...)</sup>
 
 ##### @implementation_safe(Class, CategoryName)
 
