@@ -35,11 +35,17 @@ This is really useful if you're trying to separate concerns. For example, you mi
 @end
 ```
 
+The call to `combineOriginal` can be placed anywhere in the method, or it may be omitted completely (but that would defeat the objective).
+
+You should pass all original arguments to `combineOriginal` in the same order they appear in the method selector.
+
+If you need the return value from the original method, you must cast the result of `combineOriginal` to the required type.
+
 ### @implementation_safe
 
 This is useful if you want to add a method to a class without risking replacing an existing implementation if one exists.
 
-```
+```objc
 @implementation_safe(MainViewController, SafeAdditions)
 
 - (void)viewWillAppear:(BOOL)animated
@@ -58,7 +64,7 @@ This is useful if you want to add a method to a class without risking replacing 
 
 This is useful if you want to provide default implementations for optional protocol methods.
 
-```
+```objc
 @protocol_implementation(Talkative)
 
 - (void)saySomething
