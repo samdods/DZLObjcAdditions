@@ -1,7 +1,5 @@
-DZLObjcAdditions
+Handy 'extensions' to the Objective-C language.
 ================
-
-Some handy 'extensions' to the Objective-C language.
 
 ### @implementation_combine
 
