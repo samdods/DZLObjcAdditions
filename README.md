@@ -23,7 +23,7 @@ This is really useful if you're trying to separate concerns. For example, you mi
 ```objc
 #import "DZLImplementationCombine.h"
 
-tion_combine(MainViewController, CombinedAdditions)
+@implementation_combine(MainViewController, CombinedAdditions)
 
 - (void)viewDidAppear:(BOOL)animated
 {
