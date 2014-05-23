@@ -8,16 +8,22 @@
 
 #import "DZLViewController.h"
 #import "DZLViewControllerMixin.h"
+#import "DZLSynthesizeLazy.h"
+#import "DZLClassSingleton.h"
 
 @interface DZLViewController () <TestProtocol>
-
+@property (nonatomic, strong) NSMutableArray *myObjects;
 @end
+
+@class_singleton(DZLViewController, sharedInstance);
 
 @implementation DZLViewController
 
+@synthesize_lazy (NSMutableArray, myObjects);
+
 + (void)load
 {
-  
+  [self.class.sharedInstance.myObjects addObjectsFromArray:@[@"this", @"that", @"the other"]];
 }
 
 + (BOOL)shouldDoSomethingWithObject:(id)object
@@ -36,6 +42,8 @@
   BOOL isSomething = [self isSomething];
   
   NSLog(@"%d %d %d", should1, should2, isSomething);
+  
+  NSLog(@"%@", self.class.sharedInstance.myObjects);
 }
 
 @end

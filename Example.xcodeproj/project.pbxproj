@@ -60,6 +60,8 @@
 		EA62359B1925708D00D4FB19 /* DZLProtocolImplementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLProtocolImplementation.h; sourceTree = "<group>"; };
 		EA62359E1925708D00D4FB19 /* NSObject+DZLObjcAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DZLObjcAdditions.h"; sourceTree = "<group>"; };
 		EA62359F1925708D00D4FB19 /* NSObject+DZLObjcAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DZLObjcAdditions.m"; sourceTree = "<group>"; };
+		EA89575B192FD3B500FACD1B /* DZLSynthesizeLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLSynthesizeLazy.h; sourceTree = "<group>"; };
+		EA89575C192FDA3100FACD1B /* DZLClassSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLClassSingleton.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,8 @@
 				EA6235991925708D00D4FB19 /* DZLImplementationCombine.h */,
 				EA62359A1925708D00D4FB19 /* DZLImplementationSafe.h */,
 				EA62359B1925708D00D4FB19 /* DZLProtocolImplementation.h */,
+				EA89575B192FD3B500FACD1B /* DZLSynthesizeLazy.h */,
+				EA89575C192FDA3100FACD1B /* DZLClassSingleton.h */,
 				EA62359C1925708D00D4FB19 /* Private */,
 			);
 			name = DZLObjcAdditions;
