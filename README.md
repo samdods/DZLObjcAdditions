@@ -1,5 +1,9 @@
-Handy Objective-C 'Extensions'
+Handy Objective-C 'Compiler Directive' Extensions
 ================
+
+This library includes extensions to enhance the language and to avoid the need for common boiler-plate code.
+
+# Summary of Extensions
 
 ### @implementation_combine
 
@@ -13,6 +17,13 @@ Like a normal category implementation, but any method already implemented on the
 
 An implementation for a protocol specification. Any optional protocol methods may be implemented here and these methods will automatically be added to any class that conforms to the protocol. (Anyone familiar with Ruby could think of this as an Objective-C equivalent to a mixin.)
 
+### @synthesize_lazy
+
+Synthesize an instance variable getter method, in which the underlying ivar is returned if non-nil. If the ivar is nil the ivar is set to a new instance of the given type and returned.
+
+### @class_singleton
+
+Implements a class method with the given name, returning a singleton of the specified type.
 
 # Examples
 
@@ -94,9 +105,11 @@ Alternatively, you can copy the DZLObjcAdditions directory into your project. Im
 * **@implementation_safe** defined in DZLImplementationSafe.h
 * **@protocol_implementation** defined in DZLProtocolImplementation.h
 
-# Warning
+# Disclosure
 
 This library makes use of the Objective-C ability to 'swizzle' methods at runtime. The implementation is very simple and I believe it is much cleaner than other examples of achieving similar results, e.g. block injection. While some people would advise against extensive method swizzling, I see no harm in it when there is a valid use-case.
+
+Furthermore, none of the above extensions are really compiler directives. They are just macros. But the macros are written in such a way that they require the '@' symbol prefix, which I think looks cool!
 
 # Twitter
 
