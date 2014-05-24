@@ -11,6 +11,8 @@
 
 @interface DZLViewController : BaseViewController
 
++ (DZLViewController *)sharedInstance;
+
 + (BOOL)shouldDoSomethingWithObject:(id)object;
 
 @end

@@ -8,13 +8,23 @@
 
 
 #define class_singleton(class, methodName) \
-implementation class (Singleton_ ## methodName) \
 + (class *)methodName { \
-static class *singleton; \
+static class *methodName; \
 static dispatch_once_t onceToken; \
 dispatch_once(&onceToken, ^{ \
-singleton = [class new]; \
+methodName = [class new]; \
 }); \
-return singleton; \
-} \
-@end
+return methodName; \
+}
+
+
+#define class_singleton_setup(class, methodName, setupCode) \
++ (class *)methodName { \
+static class *methodName; \
+static dispatch_once_t onceToken; \
+dispatch_once(&onceToken, ^{ \
+methodName = [class new]; \
+({setupCode;});\
+}); \
+return methodName; \
+}
