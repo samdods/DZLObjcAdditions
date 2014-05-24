@@ -1,5 +1,9 @@
-Handy Objective-C 'Extensions'
+Handy Objective-C 'Compiler Directive' Extensions
 ================
+
+This library includes extensions to enhance the language and to avoid the need for common boiler-plate code. It is light-weight and can be installed in a project completely risk-free.
+
+# Summary of Extensions
 
 ### @implementation_combine
 
@@ -13,6 +17,13 @@ Like a normal category implementation, but any method already implemented on the
 
 An implementation for a protocol specification. Any optional protocol methods may be implemented here and these methods will automatically be added to any class that conforms to the protocol. (Anyone familiar with Ruby could think of this as an Objective-C equivalent to a mixin.)
 
+### @synthesize_lazy
+
+Synthesize an instance variable getter method, in which the underlying ivar is returned if non-nil. If the ivar is nil the ivar is set to a new instance of the given type and returned.
+
+### @class_singleton / @class_singleton_setup
+
+Implements a class method with the given name, returning a singleton of the specified type, with optional additional setup.
 
 # Examples
 
@@ -85,6 +96,69 @@ This is useful if you want to provide default implementations for optional proto
 @end
 ```
 
+### @synthesize_lazy
+
+Lazy initialisation is common for many types of property, for example an `NSMutableArray` instance might be initialised as follows:
+
+```objc
+- (NSMutableArray *)transactions
+{
+  return _transactions ?: (_transactions = [NSMutableArray new]);
+}
+```
+
+Using the `@synthesize_lazy` directive, it is simplified further as follows:
+
+```objc
+@synthesize_lazy (NSMutableArray, transactions);
+```
+
+You can place this directive at any place within your implementation.
+
+### @class_singleton
+
+Singletons are how we have a shared or default instance of a class, and are very common in Cocoa (`NSFileManager`, `NSNotificationCenter`, etc.). When we define them ourselves we repeat the same boiler-plate code over and over, throughout a project, which usually looks like the following:
+
+```objc
++ (HTTPClient *)defaultClient
+{
+  static HTTPClient *defaultClient;
+  static dispatch_once_t onceToken;
+  
+  dispatch_once(&onceToken, ^{
+    defaultClient = [HTTPClient new];
+  });
+  
+  return defaultClient;
+}
+```
+
+This can be simplied by declaring the `@class_singleton` in your implementation file, but above your actual implementation:
+
+```objc
+
+@class_singleton (HTTPClient, defaultClient)
+
+@implementation HTTPClient
+
+// implementation code here
+
+@end
+```
+
+### @class_singleton_setup
+
+Sometimes you may wish to perform further setup of your shared instance in your singleton method. Of course, common initialisation should be done in the `-init` method of your class, which will be invoked by the singleton method. But if there is any setup required specifically for the shared instance, it can achieved easily with the `@class_singleton_setup` directive:
+
+```objc
+@class_singleton_setup (HTTPClient, defaultClient,
+  defaultClient.operationQueue = [NSOperationQueue new];
+  defaultClient.operationQueue.maxConcurrentOperationCount = 5;
+)
+```
+
+Using this method, you can refer to the newly-created shared instance by the same variable name as the name you have provided to the method. And in Xcode, you will be greeted by code-completion, which is nice!
+
 # Installing
 
 Available as a CocoaPod.
@@ -93,10 +167,14 @@ Alternatively, you can copy the DZLObjcAdditions directory into your project. Im
 * **@implementation_combine** defined in DZLImplementationCombine.h
 * **@implementation_safe** defined in DZLImplementationSafe.h
 * **@protocol_implementation** defined in DZLProtocolImplementation.h
+* **@synthesize_lazy** defined in DZLSynthesizeLazy.h
+* **@class_singleton** / **@class_singleton_setup** defined in DZLClassSingleton.h
 
-# Warning
+# Disclaimer
 
 This library makes use of the Objective-C ability to 'swizzle' methods at runtime. The implementation is very simple and I believe it is much cleaner than other examples of achieving similar results, e.g. block injection. While some people would advise against extensive method swizzling, I see no harm in it when there is a valid use-case.
+
+Furthermore, none of the above extensions are really compiler directives. They are just macros. But the macros are written in such a way that they require the '@' symbol prefix, which I think makes them look cool!
 
 # Twitter
 
