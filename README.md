@@ -1,4 +1,4 @@
-Handy Objective-C 'Compiler Directive' Extensions
+Handy Objective-C 'Extensions'
 ================
 
 This library includes extensions to enhance the language and to avoid the need for common boiler-plate code. It is light-weight and can be installed in a project completely risk-free.
@@ -21,7 +21,7 @@ An implementation for a protocol specification. Any optional protocol methods ma
 
 Synthesize an instance variable getter method, in which the underlying ivar is returned if non-nil. If the ivar is nil the ivar is set to a new instance of the given type and returned.
 
-### @class_singleton / @class_singleton_setup
+### class_singleton / class_singleton_setup
 
 Implements a class method with the given name, returning a singleton of the specified type, with optional additional setup.
 
@@ -133,25 +133,34 @@ Singletons are how we have a shared or default instance of a class, and are very
 }
 ```
 
-This can be simplied by declaring the `@class_singleton` in your implementation file, but above your actual implementation:
+This can be simplied by declaring the `class_singleton` in your implementation:
 
 ```objc
-
-@class_singleton (HTTPClient, defaultClient)
-
 @implementation HTTPClient
 
-// implementation code here
+class_singleton (HTTPClient, defaultClient);
+
+// rest of implementation code here.
+
+@end
+```
+
+If you need to expose your singleton in the interface, you can do so as you would normally, for example:
+
+```objc
+@interface HTTPClient
+
++ (instancetype)defaultClient;
 
 @end
 ```
 
 ### @class_singleton_setup
 
-Sometimes you may wish to perform further setup of your shared instance in your singleton method. Of course, common initialisation should be done in the `-init` method of your class, which will be invoked by the singleton method. But if there is any setup required specifically for the shared instance, it can achieved easily with the `@class_singleton_setup` directive:
+Sometimes you may wish to perform further setup of your shared instance in your singleton method. Of course, common initialisation should be done in the `-init` method of your class, which will be invoked by the singleton method. But if there is any setup required specifically for the shared instance, it can achieved easily with the `class_singleton_setup` directive:
 
 ```objc
-@class_singleton_setup (HTTPClient, defaultClient,
+class_singleton_setup (HTTPClient, defaultClient,
   defaultClient.operationQueue = [NSOperationQueue new];
   defaultClient.operationQueue.maxConcurrentOperationCount = 5;
 )
@@ -168,7 +177,7 @@ Alternatively, you can copy the DZLObjcAdditions directory into your project. Im
 * **@implementation_safe** defined in DZLImplementationSafe.h
 * **@protocol_implementation** defined in DZLProtocolImplementation.h
 * **@synthesize_lazy** defined in DZLSynthesizeLazy.h
-* **@class_singleton** / **@class_singleton_setup** defined in DZLClassSingleton.h
+* **class_singleton** / **class_singleton_setup** defined in DZLClassSingleton.h
 
 # Disclaimer
 
