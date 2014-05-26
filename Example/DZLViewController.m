@@ -11,18 +11,18 @@
 #import "DZLSynthesizeLazy.h"
 #import "DZLClassSingleton.h"
 
-
 @interface DZLViewController () <TestProtocol>
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 @property (nonatomic, strong) NSMutableArray *myObjects;
 @end
 
 
-
-
 @implementation DZLViewController
 
-class_singleton_setup(DZLViewController, sharedInstance, sharedInstance.operationQueue = [NSOperationQueue new]; sharedInstance.operationQueue.maxConcurrentOperationCount = 1);
+@class_singleton_setup(DZLViewController, sharedInstance,
+  sharedInstance.operationQueue = [NSOperationQueue new];
+  sharedInstance.operationQueue.maxConcurrentOperationCount = 1;
+)
 
 @synthesize_lazy (NSMutableArray, myObjects);
 

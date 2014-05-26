@@ -7,7 +7,12 @@
 //
 
 
+@interface NSObject ()
+@property (nonatomic, strong) NSString *dzl_class_singleton;
+@end
+
 #define class_singleton(class, methodName) \
+dynamic dzl_class_singleton; \
 + (class *)methodName { \
 static class *methodName; \
 static dispatch_once_t onceToken; \
@@ -19,6 +24,7 @@ return methodName; \
 
 
 #define class_singleton_setup(class, methodName, setupCode) \
+dynamic dzl_class_singleton; \
 + (class *)methodName { \
 static class *methodName; \
 static dispatch_once_t onceToken; \
