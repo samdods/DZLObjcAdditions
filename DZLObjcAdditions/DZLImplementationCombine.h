@@ -11,7 +11,7 @@
 #import "DZLSuper.h"
 
 #define implementation_combine(class, name) \
-interface MixinCombine_ ## class ## name : class @end \
-@implementation MixinCombine_ ## class ## name \
-+ (void)load { [class dzl_mixinCombineClass:self]; } @end \
-@implementation MixinCombine_ ## class ## name (Additions)
+interface DZLImplementationCombine_ ## class ## name : class @end \
+@implementation DZLImplementationCombine_ ## class ## name \
++ (void)load { [class dzl_implementationCombine:self]; } @end \
+@implementation DZLImplementationCombine_ ## class ## name (Additions)

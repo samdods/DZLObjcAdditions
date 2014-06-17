@@ -10,21 +10,21 @@
 
 @interface NSObject (DZLObjcAdditions)
 
-+ (void)dzl_mixinSafeClass:(Class)mixinClass;
++ (void)dzl_implementationSafe:(Class)aClass;
 
-+ (void)dzl_mixinCombineClass:(Class)mixinClass;
++ (void)dzl_implementationCombine:(Class)aClass;
 
 @end
 
 
-@interface DZLMixin : NSProxy
+@interface DZLObjcAdditions : NSProxy
 
 + (instancetype)proxyForObject:(id)object class:(Class)class toForwardSelector:(SEL)selector;
 
 @end
 
 
-@interface DZLMixin (MixinProtocol)
+@interface DZLObjcAdditions (MixinProtocol)
 
 + (void)mixinAllIfNecessary;
 

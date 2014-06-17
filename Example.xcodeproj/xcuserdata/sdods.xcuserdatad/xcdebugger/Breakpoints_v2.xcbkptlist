@@ -35,7 +35,7 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Example/DZLViewControllerMixin.m"
+            filePath = "Example/DZLViewControllerAdditions.m"
             timestampString = "424726897.732352"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -65,7 +65,7 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Example/DZLViewControllerMixin.m"
+            filePath = "Example/DZLViewControllerAdditions.m"
             timestampString = "424726897.732352"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -79,7 +79,7 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Example/DZLViewControllerMixin.m"
+            filePath = "Example/DZLViewControllerAdditions.m"
             timestampString = "424726897.732352"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -109,7 +109,7 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Example/DZLViewControllerMixin.m"
+            filePath = "Example/DZLViewControllerAdditions.m"
             timestampString = "422025708.459327"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -133,68 +133,6 @@
             endingLineNumber = "41"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DZLObjcAdditions/Private/NSObject+DZLObjcAdditions.m"
-            timestampString = "424726634.151429"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "+mixinAll"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DZLObjcAdditions/Private/NSObject+DZLObjcAdditions.m"
-            timestampString = "424726765.89403"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "+mixinAllIfNecessary"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "+[DZLMixin(MixinProtocol) mixinAllIfNecessary]"
-                  moduleName = "Example"
-                  urlString = "file:///Users/sdods/code/DZLObjcAdditions/DZLObjcAdditions/Private/NSObject+DZLObjcAdditions.m"
-                  timestampString = "424726920.667518"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__46+[DZLMixin(MixinProtocol) mixinAllIfNecessary]_block_invoke"
-                  moduleName = "Example"
-                  urlString = "file:///Users/sdods/code/DZLObjcAdditions/DZLObjcAdditions/Private/NSObject+DZLObjcAdditions.m"
-                  timestampString = "424726920.667685"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
-                  offsetFromSymbolStart = "18">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

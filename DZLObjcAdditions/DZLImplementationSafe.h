@@ -11,7 +11,7 @@
 #import "DZLSuper.h"
 
 #define implementation_safe(class, name) \
-interface MixinSafe_ ## class ## name : class @end \
-@implementation MixinSafe_ ## class ## name \
-+ (void)load { [class dzl_mixinSafeClass:self]; } @end \
-@implementation MixinSafe_ ## class ## name (Additions)
+interface DZLImplementationSafe_ ## class ## name : class @end \
+@implementation DZLImplementationSafe_ ## class ## name \
++ (void)load { [class dzl_implementationSafe:self]; } @end \
+@implementation DZLImplementationSafe_ ## class ## name (Additions)

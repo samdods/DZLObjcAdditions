@@ -1,6 +1,6 @@
 //
-//  DZLViewControllerMixin.h
-//  MixinExample
+//  DZLViewControllerAdditions.h
+//  Example
 //
 //  Created by Sam Dods on 14/05/2014.
 //  Copyright (c) 2014 Sam Dods. All rights reserved.
@@ -9,7 +9,7 @@
 #import "DZLImplementationCombine.h"
 #import "DZLImplementationSafe.h"
 #import "DZLProtocolImplementation.h"
-#import "DZLViewControllerMixin.h"
+#import "DZLViewControllerAdditions.h"
 
 @protocol_implementation(TestProtocol)
 

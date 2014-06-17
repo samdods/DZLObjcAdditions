@@ -9,7 +9,7 @@
 #import "NSObject+DZLObjcAdditions.h"
 
 #define protocol_implementation(name) \
-interface MixinProtocol_ ## name : NSObject <name> @end \
-@implementation MixinProtocol_ ## name \
-+ (void)load { [DZLMixin mixinAllIfNecessary]; } @end \
-@implementation MixinProtocol_ ## name (Additions)
+interface DZLProtocolImplementation_ ## name : NSObject <name> @end \
+@implementation DZLProtocolImplementation_ ## name \
++ (void)load { [DZLObjcAdditions mixinAllIfNecessary]; } @end \
+@implementation DZLProtocolImplementation_ ## name (Additions)

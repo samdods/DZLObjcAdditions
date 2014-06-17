@@ -10,43 +10,43 @@
 #import "NSObject+DZLObjcAdditions.h"
 #import "DZLClassSingleton.h"
 
-@interface DZLMixin ()
+@interface DZLObjcAdditions ()
 @property (nonatomic, strong) NSString *dzl_class_singleton;
 @property (nonatomic, strong) id object;
 @property (nonatomic, strong) Class class;
 @property (nonatomic, assign) SEL selector;
 @end
 
-@implementation DZLMixin
+@implementation DZLObjcAdditions
 
 @class_singleton(NSMutableDictionary, underlyingSelectorByReplacementSelector);
 
-+ (void)setUnderlyingSelector:(SEL)underlyingSelector forSelector:(SEL)selector class:(Class)mixinClass
++ (void)setUnderlyingSelector:(SEL)underlyingSelector forSelector:(SEL)selector class:(Class)aClass
 {
-  NSString *key = [self replacementSelectorNameForSelector:selector class:mixinClass];
+  NSString *key = [self replacementSelectorNameForSelector:selector class:aClass];
   NSString *underlyingName = NSStringFromSelector(underlyingSelector);
   NSString *existingName = self.underlyingSelectorByReplacementSelector[key];
   if (existingName) {
-    [self setUnderlyingSelector:NSSelectorFromString(existingName) forSelector:underlyingSelector class:mixinClass];
+    [self setUnderlyingSelector:NSSelectorFromString(existingName) forSelector:underlyingSelector class:aClass];
   }
   self.underlyingSelectorByReplacementSelector[key] = underlyingName;
 }
 
-+ (SEL)underlyingSelectorForSelector:(SEL)selector class:(Class)mixinClass
++ (SEL)underlyingSelectorForSelector:(SEL)selector class:(Class)aClass
 {
-  NSString *key = [self replacementSelectorNameForSelector:selector class:mixinClass];
+  NSString *key = [self replacementSelectorNameForSelector:selector class:aClass];
   NSString *underlyingName = self.underlyingSelectorByReplacementSelector[key];
   return NSSelectorFromString(underlyingName);
 }
 
-+ (NSString *)replacementSelectorNameForSelector:(SEL)selector class:(Class)mixinClass
++ (NSString *)replacementSelectorNameForSelector:(SEL)selector class:(Class)aClass
 {
-  return [NSString stringWithFormat:@"%@_%@", NSStringFromClass(mixinClass), NSStringFromSelector(selector)];
+  return [NSString stringWithFormat:@"%@_%@", NSStringFromClass(aClass), NSStringFromSelector(selector)];
 }
 
 + (instancetype)proxyForObject:(id)object class:(Class)class toForwardSelector:(SEL)selector
 {
-  DZLMixin *proxy = [DZLMixin alloc];
+  DZLObjcAdditions *proxy = [DZLObjcAdditions alloc];
   proxy.object = object;
   proxy.class = class;
   proxy.selector = selector;
@@ -55,7 +55,7 @@
 
 - (void)forwardInvocation:(NSInvocation *)invocation
 {
-  invocation.selector = [DZLMixin underlyingSelectorForSelector:self.selector class:self.class];
+  invocation.selector = [DZLObjcAdditions underlyingSelectorForSelector:self.selector class:self.class];
   [invocation invokeWithTarget:self.object];
 }
 
@@ -70,33 +70,33 @@
 
 @implementation NSObject (DZLObjcAdditions)
 
-+ (void)dzl_mixinSafeClass:(Class)mixinClass
++ (void)dzl_implementationSafe:(Class)aClass
 {
-  [self dzl_mixinClass:mixinClass overrideSuper:YES replace:NO];
+  [self dzl_implementMethodsFromClass:aClass overrideSuper:YES replace:NO];
 }
 
-+ (void)dzl_mixinCombineClass:(Class)mixinClass
++ (void)dzl_implementationCombine:(Class)aClass
 {
-  [self dzl_mixinClass:mixinClass overrideSuper:NO replace:YES];
+  [self dzl_implementMethodsFromClass:aClass overrideSuper:NO replace:YES];
 }
 
-+ (void)dzl_mixinClass:(Class)mixinClass overrideSuper:(BOOL)shouldOverrideSuper replace:(BOOL)shouldReplace
++ (void)dzl_implementMethodsFromClass:(Class)aClass overrideSuper:(BOOL)shouldOverrideSuper replace:(BOOL)shouldReplace
 {
-  [self dzl_doMixinClass:mixinClass overrideSuper:shouldOverrideSuper replace:shouldReplace];
-  [object_getClass(self) dzl_doMixinClass:object_getClass(mixinClass) overrideSuper:shouldOverrideSuper replace:shouldReplace];
+  [self dzl_doImplementMethodsFromClass:aClass overrideSuper:shouldOverrideSuper replace:shouldReplace];
+  [object_getClass(self) dzl_doImplementMethodsFromClass:object_getClass(aClass) overrideSuper:shouldOverrideSuper replace:shouldReplace];
 }
 
-+ (void)dzl_doMixinClass:(Class)mixinClass overrideSuper:(BOOL)shouldOverrideSuper replace:(BOOL)shouldReplace
++ (void)dzl_doImplementMethodsFromClass:(Class)aClass overrideSuper:(BOOL)shouldOverrideSuper replace:(BOOL)shouldReplace
 {
   uint numberOfMethods;
-  Method *methods = class_copyMethodList(mixinClass, &numberOfMethods);
+  Method *methods = class_copyMethodList(aClass, &numberOfMethods);
   for (uint m = 0; m < numberOfMethods; m++) {
     Method method = methods[m];
     SEL name = method_getName(method);
     const char *types = method_getTypeEncoding(method);
     
     BOOL instancesRespond = [self instancesRespondToSelector:name];
-    NSAssert(!shouldReplace || instancesRespond, @"Can't combine with non-existent selector '%@'", NSStringFromSelector(name));
+    NSAssert(!shouldReplace || instancesRespond, @"Can't combine with non-existent selector '%@' on class %@", NSStringFromSelector(name), NSStringFromClass(self));
     
     if (!shouldReplace && !shouldOverrideSuper && instancesRespond) {
       continue;
@@ -104,7 +104,7 @@
     
     IMP imp = method_getImplementation(method);
     
-    [self backupSelector:name forClass:mixinClass objcTypes:types];
+    [self backupSelector:name forClass:aClass objcTypes:types];
     if (shouldReplace) {
       class_replaceMethod(self, name, imp, types);
     } else {
@@ -114,18 +114,18 @@
   free(methods);
 }
 
-+ (void)backupSelector:(SEL)name forClass:(Class)mixinClass objcTypes:(const char *)types
++ (void)backupSelector:(SEL)name forClass:(Class)aClass objcTypes:(const char *)types
 {
   IMP orgImp = class_getMethodImplementation(self, name);
-  SEL newName = NSSelectorFromString([DZLMixin replacementSelectorNameForSelector:name class:mixinClass]);
+  SEL newName = NSSelectorFromString([DZLObjcAdditions replacementSelectorNameForSelector:name class:aClass]);
   class_addMethod(self, newName, orgImp, types);
-  [DZLMixin setUnderlyingSelector:newName forSelector:name class:self];
+  [DZLObjcAdditions setUnderlyingSelector:newName forSelector:name class:self];
 }
 
 @end
 
 
-@implementation DZLMixin (MixinProtocol)
+@implementation DZLObjcAdditions (MixinProtocol)
 
 + (void)mixinAllIfNecessary
 {
@@ -156,12 +156,11 @@
 
 + (void)mixinProtocol:(Protocol *)mixinProtocol toClass:(Class)targetClass
 {
-  const char *protocolName = protocol_getName(mixinProtocol);
-  NSString *className = [NSString stringWithFormat:@"MixinProtocol_%s", protocolName];
+  NSString *className = [NSString stringWithFormat:@"DZLProtocolImplementation_%@", NSStringFromProtocol(mixinProtocol)];
   
   Class mixinClass = NSClassFromString(className);
   if (mixinClass && mixinClass != targetClass && [targetClass isSubclassOfClass:NSObject.class]) {
-    [targetClass dzl_mixinClass:mixinClass overrideSuper:NO replace:NO];
+    [targetClass dzl_implementMethodsFromClass:mixinClass overrideSuper:NO replace:NO];
   }
 }
 

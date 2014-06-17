@@ -8,5 +8,5 @@
 
 #define dzlSuper(args) \
 ({ if(NO) { [super args]; } \
-id proxy = [DZLMixin proxyForObject:self class:self.class toForwardSelector:_cmd]; \
+id proxy = [DZLObjcAdditions proxyForObject:self class:self.class toForwardSelector:_cmd]; \
 [proxy args]; })
