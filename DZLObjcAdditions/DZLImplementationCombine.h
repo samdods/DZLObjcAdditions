@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Sam Dods. All rights reserved.
 //
 
-#import <objc/message.h>
 #import "NSObject+DZLObjcAdditions.h"
 #import "DZLSuper.h"
 
