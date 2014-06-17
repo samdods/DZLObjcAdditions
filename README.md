@@ -7,11 +7,11 @@ This library includes extensions to enhance the language and to avoid the need f
 
 ### @implementation_combine
 
-Like a normal category implementation with one crucial difference: any method already implemented on the underlying class is replaced in such a way that the original implementation is left in tact and can be invoked with `combineOriginal(args, ...)`.
+Like a normal category implementation with one crucial difference: any method already implemented on the underlying class is replaced in such a way that the original implementation is left intact and can be invoked with the `dzlSuper` macro.
 
 ### @implementation_safe
 
-Like a normal category implementation, but any method already implemented on the underlying class is not replaced. If a method is implemented by a class from which the underlying class inherits, the implementation in the category is added to the underlying class and the super class's implementation can be invoked with `safeSuper(args, ...)`.
+Like a normal category implementation, but any method already implemented on the underlying class is not replaced. If a method is implemented by a class from which the underlying class inherits, the implementation in the category is added to the underlying class and the super class's implementation can be invoked with the `dzlSuper` macro.
 
 ### @protocol_implementation
 
@@ -38,7 +38,7 @@ This is really useful if you're trying to separate concerns. For example, you mi
 
 - (void)viewDidAppear:(BOOL)animated
 {
-  combineOriginal(animated); // call the underlying method.
+  dzlSuper(viewDidAppear:animated); // call the underlying method.
   
   // add extra functionality.
 }
@@ -46,11 +46,9 @@ This is really useful if you're trying to separate concerns. For example, you mi
 @end
 ```
 
-The call to `combineOriginal` can be placed anywhere in the method, or it may be omitted completely (but that would defeat the objective).
+The call to `dzlSuper` can be placed anywhere in the method, or it may be omitted completely (but that would defeat the objective).
 
-You should pass all original arguments to `combineOriginal` in the same order they appear in the method selector.
-
-If you need the return value from the original method, you must cast the result of `combineOriginal` to the required type.
+The code passed into the `dzlSuper` macro should be exactly what you would send to `super` if you were overriding this method, as in the example of `viewDidAppear:animated` above. You should not call `super` directly.
 
 ### @implementation_safe
 
@@ -65,7 +63,7 @@ This is useful if you want to add a method to a class without risking replacing 
 {
   // do something here.
   
-  safeSuper(animated);
+  dzlSuper(viewWillAppear:animated);
   
   // do some more stuff here.
 }
@@ -75,13 +73,22 @@ This is useful if you want to add a method to a class without risking replacing 
 
 The call to `safeSuper` can be placed anywhere in the method, or it may be omitted.
 
-You should pass all original arguments to `safeSuper` in the same order they appear in the method selector.
-
-If you need the return value from the original method, you must cast the result of `combineOriginal` to the required type.
+The code passed into the `dzlSuper` macro should be exactly what you would send to `super` if you were overriding this method, as in the example of `viewWillAppear:animated` above. You should not call `super` directly.
 
 ### @protocol_implementation
 
 This is useful if you want to provide default implementations for optional protocol methods.
+
+For example, if you have a protocol defined as follows:
+
+```objc
+@protocol Talkative
+@optional
+- (void)saySomething;
+@end
+```
+
+You can define default implementations for the protocol methods as follows:
 
 ```objc
 #import "DZLProtocolImplementation.h"
@@ -95,6 +102,8 @@ This is useful if you want to provide default implementations for optional proto
 
 @end
 ```
+
+Then your class that adopts the protocol may do so without implementing the optional methods. The optional methods may be called and the default implementation will be used.
 
 ### @synthesize_lazy
 
