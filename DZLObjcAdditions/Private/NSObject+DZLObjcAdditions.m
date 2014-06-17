@@ -8,18 +8,18 @@
 
 #import <objc/runtime.h>
 #import "NSObject+DZLObjcAdditions.h"
+#import "DZLClassSingleton.h"
+
+@interface DZLMixin ()
+@property (nonatomic, strong) NSString *dzl_class_singleton;
+@property (nonatomic, strong) id object;
+@property (nonatomic, strong) Class class;
+@property (nonatomic, assign) SEL selector;
+@end
 
 @implementation DZLMixin
 
-+ (NSMutableDictionary *)underlyingSelectorByReplacementSelector
-{
-  static NSMutableDictionary *underlyingSelectorByReplacementSelector;
-  static dispatch_once_t onceToken;
-  _dispatch_once(&onceToken, ^{
-    underlyingSelectorByReplacementSelector = [NSMutableDictionary new];
-  });
-  return underlyingSelectorByReplacementSelector;
-};
+@class_singleton(NSMutableDictionary, underlyingSelectorByReplacementSelector);
 
 + (void)setUnderlyingSelector:(SEL)underlyingSelector forSelector:(SEL)selector class:(Class)mixinClass
 {
@@ -42,6 +42,26 @@
 + (NSString *)replacementSelectorNameForSelector:(SEL)selector class:(Class)mixinClass
 {
   return [NSString stringWithFormat:@"%@_%@", NSStringFromClass(mixinClass), NSStringFromSelector(selector)];
+}
+
++ (instancetype)proxyForObject:(id)object class:(Class)class toForwardSelector:(SEL)selector
+{
+  DZLMixin *proxy = [DZLMixin alloc];
+  proxy.object = object;
+  proxy.class = class;
+  proxy.selector = selector;
+  return proxy;
+}
+
+- (void)forwardInvocation:(NSInvocation *)invocation
+{
+  invocation.selector = [DZLMixin underlyingSelectorForSelector:self.selector class:self.class];
+  [invocation invokeWithTarget:self.object];
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector
+{
+  return [self.object methodSignatureForSelector:selector];
 }
 
 @end
@@ -75,14 +95,17 @@
     SEL name = method_getName(method);
     const char *types = method_getTypeEncoding(method);
     
-    if (!shouldReplace && !shouldOverrideSuper && [self instancesRespondToSelector:name]) {
+    BOOL instancesRespond = [self instancesRespondToSelector:name];
+    NSAssert(!shouldReplace || instancesRespond, @"Can't combine with non-existent selector '%@'", NSStringFromSelector(name));
+    
+    if (!shouldReplace && !shouldOverrideSuper && instancesRespond) {
       continue;
     }
     
     IMP imp = method_getImplementation(method);
     
+    [self backupSelector:name forClass:mixinClass objcTypes:types];
     if (shouldReplace) {
-      [self backupSelector:name forClass:mixinClass objcTypes:types];
       class_replaceMethod(self, name, imp, types);
     } else {
       class_addMethod(self, name, imp, types);
@@ -104,7 +127,15 @@
 
 @implementation DZLMixin (MixinProtocol)
 
-+ (void)load
++ (void)mixinAllIfNecessary
+{
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    [self mixinAll];
+  });
+}
+
++ (void)mixinAll
 {
   uint numberOfClasses;
   Class *classes = objc_copyClassList(&numberOfClasses);

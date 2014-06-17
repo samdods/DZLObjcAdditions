@@ -11,7 +11,7 @@
 #import "DZLSynthesizeLazy.h"
 #import "DZLClassSingleton.h"
 
-@interface DZLViewController () <TestProtocol>
+@interface DZLViewController () <TestProtocol, TestProtocol2>
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 @property (nonatomic, strong) NSMutableArray *myObjects;
 @end
@@ -41,6 +41,7 @@
   [super viewDidLoad];
   
   [self doSomethingMagic];
+  [self doSomethingElseMagic];
   
   BOOL should1 = [self.class shouldDoSomethingWithObject:nil];
   BOOL should2 = [self.class shouldDoSomethingWithObject:self];
@@ -49,6 +50,11 @@
   NSLog(@"%d %d %d", should1, should2, isSomething);
   
   NSLog(@"%@", self.class.sharedInstance.myObjects);
+}
+
+- (void)doSomethingElseMagic
+{
+  NSLog(@"in implemented doSomethingElseMagic");
 }
 
 @end

@@ -19,6 +19,13 @@
 
 @interface DZLMixin : NSProxy
 
-+ (SEL)underlyingSelectorForSelector:(SEL)selector class:(Class)mixinClass;
++ (instancetype)proxyForObject:(id)object class:(Class)class toForwardSelector:(SEL)selector;
+
+@end
+
+
+@interface DZLMixin (MixinProtocol)
+
++ (void)mixinAllIfNecessary;
 
 @end

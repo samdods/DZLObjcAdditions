@@ -16,6 +16,16 @@
 
 @end
 
+
+@protocol TestProtocol2
+
+@optional
+
+- (void)doSomethingElseMagic;
+
+@end
+
+
 @interface DZLViewController (Example)
 @end
 

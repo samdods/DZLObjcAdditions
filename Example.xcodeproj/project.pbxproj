@@ -62,6 +62,7 @@
 		EA62359F1925708D00D4FB19 /* NSObject+DZLObjcAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DZLObjcAdditions.m"; sourceTree = "<group>"; };
 		EA89575B192FD3B500FACD1B /* DZLSynthesizeLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLSynthesizeLazy.h; sourceTree = "<group>"; };
 		EA89575C192FDA3100FACD1B /* DZLClassSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLClassSingleton.h; sourceTree = "<group>"; };
+		EABF23B51950CAC1001B49E9 /* DZLSuper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZLSuper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +165,7 @@
 		EA62359C1925708D00D4FB19 /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				EABF23B51950CAC1001B49E9 /* DZLSuper.h */,
 				EA62359E1925708D00D4FB19 /* NSObject+DZLObjcAdditions.h */,
 				EA62359F1925708D00D4FB19 /* NSObject+DZLObjcAdditions.m */,
 			);

@@ -8,13 +8,10 @@
 
 #import <objc/message.h>
 #import "NSObject+DZLObjcAdditions.h"
-
-#define combineOriginal(args...) \
-({ SEL newName = [DZLMixin underlyingSelectorForSelector:_cmd class:self.class]; \
-((void *(*)(id, SEL, ...))objc_msgSend)(self, newName, ##args); })
+#import "DZLSuper.h"
 
 #define implementation_combine(class, name) \
-interface MixinCombine_ ## class ## name : NSObject @end \
+interface MixinCombine_ ## class ## name : class @end \
 @implementation MixinCombine_ ## class ## name \
 + (void)load { [class dzl_mixinCombineClass:self]; } @end \
 @implementation MixinCombine_ ## class ## name (Additions)

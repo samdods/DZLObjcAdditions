@@ -8,14 +8,10 @@
 
 #import <objc/message.h>
 #import "NSObject+DZLObjcAdditions.h"
-
-#define safeSuper(args...) \
-({ struct objc_super dzlSuperClass_ = {self, self.class.superclass}; \
-((void *(*)(struct objc_super *, SEL, ...))objc_msgSendSuper)(&dzlSuperClass_, _cmd, ##args); })
-
+#import "DZLSuper.h"
 
 #define implementation_safe(class, name) \
-interface MixinSafe_ ## class ## name : NSObject @end \
+interface MixinSafe_ ## class ## name : class @end \
 @implementation MixinSafe_ ## class ## name \
 + (void)load { [class dzl_mixinSafeClass:self]; } @end \
 @implementation MixinSafe_ ## class ## name (Additions)

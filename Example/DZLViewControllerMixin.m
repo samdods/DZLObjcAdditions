@@ -21,20 +21,30 @@
 @end
 
 
+@protocol_implementation(TestProtocol2)
+
+- (void)doSomethingElseMagic
+{
+  NSLog(@"in default doSomethingElseMagic");
+}
+
+@end
+
+
 @implementation_safe(DZLViewController, Example)
 
 - (void)viewWillAppear:(BOOL)animated
 {
   NSLog(@"in safe viewWillAppear:");
   
-  safeSuper(animated);
+  dzlSuper(viewWillAppear:animated);
 }
 
 - (BOOL)isSomething
 {
   NSLog(@"in safe isSomething");
   
-  return (BOOL)safeSuper();
+  return dzlSuper(isSomething);
 }
 
 @end
@@ -46,7 +56,7 @@
 {
   NSLog(@"in combined shouldDoSomethingWithObject:");
   
-  BOOL should = (BOOL)combineOriginal(object);
+  BOOL should = dzlSuper(shouldDoSomethingWithObject:object);
   
   return should;
 }
@@ -55,7 +65,7 @@
 {
   NSLog(@"in combined viewDidLoad");
   
-  combineOriginal();
+  dzlSuper(viewDidLoad);
 }
 
 @end
@@ -66,7 +76,7 @@
 {
   NSLog(@"in even more combined viewDidLoad");
   
-  combineOriginal();
+  dzlSuper(viewDidLoad);
 }
 
 @end

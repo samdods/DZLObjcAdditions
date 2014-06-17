@@ -14,9 +14,19 @@
 
 @implementation BaseViewController
 
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
 }
 
 - (BOOL)isSomething
