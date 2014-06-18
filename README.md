@@ -52,6 +52,25 @@ The code passed into the `dzlSuper` macro should be exactly what you would send 
 
 Each method specified in an `@implementation_combine` must be implemented by the underlying class, otherwise an exception is raised (from a Foundation assertion). This is because it usually only makes sense to combine with a method that already exists.
 
+If you wish to avoid the assertion because you intentionally want to combine with a method that isn't implemented on the underlying class (because perhaps it will be at a later date), you can do so with by passing the `dzl_no_assert` parameter as follows:
+
+```objc
+@implementation_combine(MainViewController, CombinedAdditions, dzl_no_assert)
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+  dzlCombine(scrollViewDidScroll:scrollView); // call the underlying method
+  
+  // add extra functionality.
+}
+
+@end
+```
+
+This is particularly useful if you want to "combine" with a delegate method that may legitimately be unimplemented on the underlying class.
+
+The `dzlCombine` macro has exactly the same syntax as the `dzlSuper` macro, but does not require the method to be implemented on the underlying class. (The difference is that it will not silence the compiler's "must call super" warning if a method is declared with the `NS_REQUIRES_SUPER` attribute.)
+
 ### @implementation_safe
 
 This is useful if you want to add a method to a class without risking replacing an existing implementation if one exists.
