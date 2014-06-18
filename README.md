@@ -7,7 +7,7 @@ This library includes extensions to enhance the language and to avoid the need f
 
 ### @implementation_combine
 
-Like a normal category implementation with one crucial difference: any method already implemented on the underlying class is replaced in such a way that the original implementation is left intact and can be invoked with the `dzlSuper` macro.
+Like a normal category implementation with one crucial difference: any method already implemented on the underlying class is replaced in such a way that the original implementation is left intact and can be invoked with the `dzlSuper` or `dzlCombine` macro.
 
 ### @implementation_safe
 
@@ -49,6 +49,8 @@ This is really useful if you're trying to separate concerns. For example, you mi
 The call to `dzlSuper` can be placed anywhere in the method, or it may be omitted completely (but that would defeat the objective).
 
 The code passed into the `dzlSuper` macro should be exactly what you would send to `super` if you were overriding this method, as in the example of `viewDidAppear:animated` above. You should not call `super` directly.
+
+Each method specified in an `@implementation_combine` must be implemented by the underlying class, otherwise an exception is raised (from a Foundation assertion). This is because it usually only makes sense to combine with a method that already exists.
 
 ### @implementation_safe
 
