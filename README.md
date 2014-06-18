@@ -71,6 +71,8 @@ This is particularly useful if you want to "combine" with a delegate method that
 
 The `dzlCombine` macro has exactly the same syntax as the `dzlSuper` macro, but does not require the method to be implemented on the underlying class. (The difference is that it will not silence the compiler's "must call super" warning if a method is declared with the `NS_REQUIRES_SUPER` attribute.)
 
+You can check if the underlying class implements the current method by calling `dzlCanCombine()`, which returns YES if the underlying class implements the same method from which it was called. Calling `dzlSuper` or `dzlCombine` will not cause any problems if the underlying class does not implement the method, so it's not always necessary to check. It is useful if the method is expected to return a particular value.
+
 ### @implementation_safe
 
 This is useful if you want to add a method to a class without risking replacing an existing implementation if one exists.
