@@ -67,6 +67,12 @@
   return [self.object methodSignatureForSelector:selector];
 }
 
++ (BOOL)proxyForObject:(id)object class:(Class)class respondsToSelector:(SEL)selector
+{
+  SEL targetSelector = [DZLObjcAdditions underlyingSelectorForSelector:selector class:class];
+  return [object respondsToSelector:targetSelector];
+}
+
 @end
 
 

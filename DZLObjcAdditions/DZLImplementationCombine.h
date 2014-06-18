@@ -13,6 +13,9 @@
 ({ id proxy = [DZLObjcAdditions proxyForObject:self class:self.class toForwardSelector:_cmd]; \
 [proxy args]; })
 
+#define dzlCanCombine() \
+({ [DZLObjcAdditions proxyForObject:self class:self.class respondsToSelector:_cmd]; })
+
 #define dzl_no_assert 37834
 
 #define implementation_combine(klass, name, args...) \

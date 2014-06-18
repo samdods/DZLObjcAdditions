@@ -57,4 +57,9 @@
   NSLog(@"in implemented doSomethingElseMagic");
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+  
+}
+
 @end

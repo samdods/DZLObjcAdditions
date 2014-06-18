@@ -17,6 +17,8 @@ extern void __attribute__((overloadable)) dzl_implementationCombine(id self, Cla
 
 + (instancetype)proxyForObject:(id)object class:(Class)class toForwardSelector:(SEL)selector;
 
++ (BOOL)proxyForObject:(id)object class:(Class)class respondsToSelector:(SEL)selector;
+
 @end
 
 

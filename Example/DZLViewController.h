@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface DZLViewController : BaseViewController
+@interface DZLViewController : BaseViewController <UIScrollViewDelegate>
 
 + (DZLViewController *)sharedInstance;
 

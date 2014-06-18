@@ -72,7 +72,16 @@
 {
   dzlCombine(scrollViewDidScroll:scrollView);
   
-  NSLog(@"scroll view scrolled");
+  BOOL hasUnderlyingMethod = dzlCanCombine();
+  NSLog(@"scroll view scrolled (%zd)", hasUnderlyingMethod);
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+  dzlCombine(scrollViewDidEndDecelerating:scrollView);
+  
+  BOOL hasUnderlyingMethod = dzlCanCombine();
+  NSLog(@"scroll view ended decelerating (%zd)", hasUnderlyingMethod);
 }
 
 @end
