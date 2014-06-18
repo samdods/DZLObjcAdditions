@@ -50,7 +50,7 @@
 @end
 
 
-@implementation_combine(DZLViewController, Example)
+@implementation_combine(DZLViewController, Example, dzl_no_assert)
 
 + (BOOL)shouldDoSomethingWithObject:(id)object
 {
@@ -66,6 +66,13 @@
   NSLog(@"in combined viewDidLoad");
   
   dzlSuper(viewDidLoad);
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+  dzlCombine(scrollViewDidScroll:scrollView);
+  
+  NSLog(@"scroll view scrolled");
 }
 
 @end

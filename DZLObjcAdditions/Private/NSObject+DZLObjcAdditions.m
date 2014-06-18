@@ -9,6 +9,7 @@
 #import <objc/runtime.h>
 #import "NSObject+DZLObjcAdditions.h"
 #import "DZLClassSingleton.h"
+#import "DZLImplementationCombine.h"
 
 @interface DZLObjcAdditions ()
 @property (nonatomic, strong) NSString *dzl_class_singleton;
@@ -56,7 +57,9 @@
 - (void)forwardInvocation:(NSInvocation *)invocation
 {
   invocation.selector = [DZLObjcAdditions underlyingSelectorForSelector:self.selector class:self.class];
-  [invocation invokeWithTarget:self.object];
+  if ([self.object respondsToSelector:invocation.selector]) {
+    [invocation invokeWithTarget:self.object];
+  }
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)selector
@@ -70,23 +73,13 @@
 
 @implementation NSObject (DZLObjcAdditions)
 
-+ (void)dzl_implementationSafe:(Class)aClass
++ (void)dzl_implementMethodsFromClass:(Class)aClass overrideSuper:(BOOL)shouldOverrideSuper replace:(BOOL)shouldReplace shouldAssert:(BOOL)shouldAssert
 {
-  [self dzl_implementMethodsFromClass:aClass overrideSuper:YES replace:NO];
+  [self dzl_doImplementMethodsFromClass:aClass overrideSuper:shouldOverrideSuper replace:shouldReplace shouldAssert:shouldAssert];
+  [object_getClass(self) dzl_doImplementMethodsFromClass:object_getClass(aClass) overrideSuper:shouldOverrideSuper replace:shouldReplace shouldAssert:shouldAssert];
 }
 
-+ (void)dzl_implementationCombine:(Class)aClass
-{
-  [self dzl_implementMethodsFromClass:aClass overrideSuper:NO replace:YES];
-}
-
-+ (void)dzl_implementMethodsFromClass:(Class)aClass overrideSuper:(BOOL)shouldOverrideSuper replace:(BOOL)shouldReplace
-{
-  [self dzl_doImplementMethodsFromClass:aClass overrideSuper:shouldOverrideSuper replace:shouldReplace];
-  [object_getClass(self) dzl_doImplementMethodsFromClass:object_getClass(aClass) overrideSuper:shouldOverrideSuper replace:shouldReplace];
-}
-
-+ (void)dzl_doImplementMethodsFromClass:(Class)aClass overrideSuper:(BOOL)shouldOverrideSuper replace:(BOOL)shouldReplace
++ (void)dzl_doImplementMethodsFromClass:(Class)aClass overrideSuper:(BOOL)shouldOverrideSuper replace:(BOOL)shouldReplace shouldAssert:(BOOL)shouldAssert
 {
   uint numberOfMethods;
   Method *methods = class_copyMethodList(aClass, &numberOfMethods);
@@ -96,7 +89,7 @@
     const char *types = method_getTypeEncoding(method);
     
     BOOL instancesRespond = [self instancesRespondToSelector:name];
-    NSAssert(!shouldReplace || instancesRespond, @"Can't combine with non-existent selector '%@' on class %@", NSStringFromSelector(name), NSStringFromClass(self));
+    NSAssert(!shouldAssert || !shouldReplace || instancesRespond, @"Can't combine with non-existent selector '%@' on class %@", NSStringFromSelector(name), NSStringFromClass(self));
     
     if (!shouldReplace && !shouldOverrideSuper && instancesRespond) {
       continue;
@@ -116,6 +109,9 @@
 
 + (void)backupSelector:(SEL)name forClass:(Class)aClass objcTypes:(const char *)types
 {
+  if (![self instancesRespondToSelector:name] && ![self respondsToSelector:name]) {
+    return;
+  }
   IMP orgImp = class_getMethodImplementation(self, name);
   SEL newName = NSSelectorFromString([DZLObjcAdditions replacementSelectorNameForSelector:name class:aClass]);
   class_addMethod(self, newName, orgImp, types);
@@ -160,8 +156,25 @@
   
   Class mixinClass = NSClassFromString(className);
   if (mixinClass && mixinClass != targetClass && [targetClass isSubclassOfClass:NSObject.class]) {
-    [targetClass dzl_implementMethodsFromClass:mixinClass overrideSuper:NO replace:NO];
+    [targetClass dzl_implementMethodsFromClass:mixinClass overrideSuper:NO replace:NO shouldAssert:YES];
   }
 }
 
 @end
+
+
+
+void dzl_implementationSafe(id self, Class aClass)
+{
+  [self dzl_implementMethodsFromClass:aClass overrideSuper:YES replace:NO shouldAssert:YES];
+}
+
+void __attribute__((overloadable)) dzl_implementationCombine(id self, Class aClass)
+{
+  dzl_implementationCombine(self, aClass, YES);
+}
+
+void __attribute__((overloadable)) dzl_implementationCombine(id self, Class aClass, NSInteger shouldAssert)
+{
+  [self dzl_implementMethodsFromClass:aClass overrideSuper:NO replace:YES shouldAssert:(shouldAssert != dzl_no_assert)];
+}

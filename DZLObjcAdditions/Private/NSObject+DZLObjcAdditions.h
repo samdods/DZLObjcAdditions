@@ -8,13 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (DZLObjcAdditions)
-
-+ (void)dzl_implementationSafe:(Class)aClass;
-
-+ (void)dzl_implementationCombine:(Class)aClass;
-
-@end
+extern void dzl_implementationSafe(id self, Class aClass);
+extern void __attribute__((overloadable)) dzl_implementationCombine(id self, Class aClass);
+extern void __attribute__((overloadable)) dzl_implementationCombine(id self, Class aClass, NSInteger shouldAssert);
 
 
 @interface DZLObjcAdditions : NSProxy

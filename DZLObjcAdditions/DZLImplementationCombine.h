@@ -9,8 +9,14 @@
 #import "NSObject+DZLObjcAdditions.h"
 #import "DZLSuper.h"
 
-#define implementation_combine(class, name) \
-interface DZLImplementationCombine_ ## class ## name : class @end \
-@implementation DZLImplementationCombine_ ## class ## name \
-+ (void)load { [class dzl_implementationCombine:self]; } @end \
-@implementation DZLImplementationCombine_ ## class ## name (Additions)
+#define dzlCombine(args) \
+({ id proxy = [DZLObjcAdditions proxyForObject:self class:self.class toForwardSelector:_cmd]; \
+[proxy args]; })
+
+#define dzl_no_assert 37834
+
+#define implementation_combine(klass, name, args...) \
+interface DZLImplementationCombine_ ## klass ## name : klass @end \
+@implementation DZLImplementationCombine_ ## klass ## name \
++ (void)load { dzl_implementationCombine(klass.class, self, ##args); } @end \
+@implementation DZLImplementationCombine_ ## klass ## name (Additions)

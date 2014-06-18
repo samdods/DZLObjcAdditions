@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FC49AAC3-0864-4E90-A221-47BF839A41F4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Example</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EB3EBE43-8DEC-48FB-BB5E-0C250E17BF1F</key>
+		<string>ssh://github.com/samdods/DZLObjcAdditions.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Example.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EB3EBE43-8DEC-48FB-BB5E-0C250E17BF1F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/samdods/DZLObjcAdditions.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EB3EBE43-8DEC-48FB-BB5E-0C250E17BF1F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EB3EBE43-8DEC-48FB-BB5E-0C250E17BF1F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DZLObjcAdditions</string>
+		</dict>
+	</array>
+</dict>
+</plist>

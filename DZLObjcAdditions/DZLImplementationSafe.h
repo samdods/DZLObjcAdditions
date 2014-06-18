@@ -9,8 +9,8 @@
 #import "NSObject+DZLObjcAdditions.h"
 #import "DZLSuper.h"
 
-#define implementation_safe(class, name) \
-interface DZLImplementationSafe_ ## class ## name : class @end \
-@implementation DZLImplementationSafe_ ## class ## name \
-+ (void)load { [class dzl_implementationSafe:self]; } @end \
-@implementation DZLImplementationSafe_ ## class ## name (Additions)
+#define implementation_safe(klass, name) \
+interface DZLImplementationSafe_ ## klass ## name : klass @end \
+@implementation DZLImplementationSafe_ ## klass ## name \
++ (void)load { dzl_implementationSafe(klass.class, self); } @end \
+@implementation DZLImplementationSafe_ ## klass ## name (Additions)
