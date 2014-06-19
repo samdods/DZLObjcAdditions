@@ -11,6 +11,8 @@
 #import "DZLClassSingleton.h"
 #import "DZLImplementationCombine.h"
 
+static const void * const DZLObjcAdditionsSuperCountKey = &DZLObjcAdditionsSuperCountKey;
+
 @interface DZLObjcAdditions ()
 @property (nonatomic, strong) NSString *dzl_class_singleton;
 @property (nonatomic, strong) id object;
@@ -33,10 +35,14 @@
   self.underlyingSelectorByReplacementSelector[key] = underlyingName;
 }
 
-+ (SEL)underlyingSelectorForSelector:(SEL)selector class:(Class)aClass
++ (SEL)underlyingSelectorForSelector:(SEL)selector class:(Class)targetClass
 {
-  NSString *key = [self replacementSelectorNameForSelector:selector class:aClass];
-  NSString *underlyingName = self.underlyingSelectorByReplacementSelector[key];
+  NSString *underlyingName = nil;
+  while (targetClass != Nil && underlyingName == nil) {
+    NSString *key = [self replacementSelectorNameForSelector:selector class:targetClass];
+    underlyingName = self.underlyingSelectorByReplacementSelector[key];
+    targetClass = targetClass.superclass;
+  }
   return NSSelectorFromString(underlyingName);
 }
 
@@ -54,12 +60,10 @@
   return proxy;
 }
 
-- (void)forwardInvocation:(NSInvocation *)invocation
++ (BOOL)proxyForObject:(id)object class:(Class)class respondsToSelector:(SEL)selector
 {
-  invocation.selector = [DZLObjcAdditions underlyingSelectorForSelector:self.selector class:self.class];
-  if ([self.object respondsToSelector:invocation.selector]) {
-    [invocation invokeWithTarget:self.object];
-  }
+  SEL targetSelector = [DZLObjcAdditions underlyingSelectorForSelector:selector class:class];
+  return [object respondsToSelector:targetSelector];
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)selector
@@ -67,10 +71,60 @@
   return [self.object methodSignatureForSelector:selector];
 }
 
-+ (BOOL)proxyForObject:(id)object class:(Class)class respondsToSelector:(SEL)selector
+- (void)forwardInvocation:(NSInvocation *)invocation
 {
-  SEL targetSelector = [DZLObjcAdditions underlyingSelectorForSelector:selector class:class];
-  return [object respondsToSelector:targetSelector];
+  Class targetClass = [self targetClassForUnderlyingSelector];
+  invocation.selector = [DZLObjcAdditions underlyingSelectorForSelector:self.selector class:targetClass];
+  
+  if ([self.object respondsToSelector:invocation.selector]) {
+    [self modifySuperCountByDelta:1];
+    [invocation invokeWithTarget:self.object];
+    [self modifySuperCountByDelta:-1];
+  }
+}
+
+- (Class)targetClassForUnderlyingSelector
+{
+  Class targetClass = self.class;
+  for (NSInteger superCount = 0; superCount < self.currentSuperCount; superCount++) {
+    if (targetClass.superclass == Nil) {
+      return targetClass;
+    }
+    targetClass = targetClass.superclass;
+  }
+  return targetClass;
+}
+
+- (NSInteger)currentSuperCount
+{
+  NSMutableDictionary *superCountBySelector = [self superCountBySelector];
+  NSString *key = NSStringFromSelector(self.selector);
+  return [superCountBySelector[key] integerValue];
+}
+
+- (void)modifySuperCountByDelta:(NSInteger)delta
+{
+  @synchronized(self.object)
+  {
+    NSMutableDictionary *superCountBySelector = [self superCountBySelector];
+    NSString *key = NSStringFromSelector(self.selector);
+    NSInteger superCount = [superCountBySelector[key] integerValue];
+    
+    superCount += delta;
+    
+    if (superCount == 0) {
+      [superCountBySelector removeObjectForKey:key];
+    } else {
+      superCountBySelector[key] = @(superCount);
+    }
+    
+    objc_setAssociatedObject(self.object, DZLObjcAdditionsSuperCountKey, superCountBySelector.count ? superCountBySelector : nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+  }
+}
+
+- (NSMutableDictionary *)superCountBySelector
+{
+  return objc_getAssociatedObject(self.object, DZLObjcAdditionsSuperCountKey) ?: [NSMutableDictionary new];
 }
 
 @end

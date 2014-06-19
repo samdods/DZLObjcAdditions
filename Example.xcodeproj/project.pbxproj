@@ -22,6 +22,8 @@
 		EA6235841922C2ED00D4FB19 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6235831922C2ED00D4FB19 /* BaseViewController.m */; };
 		EA62358A1922E0A200D4FB19 /* DZLViewControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6235891922E05B00D4FB19 /* DZLViewControllerAdditions.m */; };
 		EA6235A11925708D00D4FB19 /* NSObject+DZLObjcAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA62359F1925708D00D4FB19 /* NSObject+DZLObjcAdditions.m */; };
+		EAB77CDD1953156F00C9B48E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB77CDC1953156F00C9B48E /* RootViewController.m */; };
+		EAEBE8EC1953063F00562901 /* BaseViewControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEBE8EB1953063F00562901 /* BaseViewControllerAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +64,10 @@
 		EA62359F1925708D00D4FB19 /* NSObject+DZLObjcAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DZLObjcAdditions.m"; sourceTree = "<group>"; };
 		EA89575B192FD3B500FACD1B /* DZLSynthesizeLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLSynthesizeLazy.h; sourceTree = "<group>"; };
 		EA89575C192FDA3100FACD1B /* DZLClassSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZLClassSingleton.h; sourceTree = "<group>"; };
+		EAB77CDB1953156F00C9B48E /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		EAB77CDC1953156F00C9B48E /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		EABF23B51950CAC1001B49E9 /* DZLSuper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZLSuper.h; sourceTree = "<group>"; };
+		EAEBE8EB1953063F00562901 /* BaseViewControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewControllerAdditions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +136,11 @@
 				EA4E920D1922B43C00BE01DE /* Supporting Files */,
 				EA6235821922C2ED00D4FB19 /* BaseViewController.h */,
 				EA6235831922C2ED00D4FB19 /* BaseViewController.m */,
+				EAB77CDB1953156F00C9B48E /* RootViewController.h */,
+				EAB77CDC1953156F00C9B48E /* RootViewController.m */,
 				EA62358E1923480200D4FB19 /* DZLViewControllerAdditions.h */,
 				EA6235891922E05B00D4FB19 /* DZLViewControllerAdditions.m */,
+				EAEBE8EB1953063F00562901 /* BaseViewControllerAdditions.m */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -271,7 +279,9 @@
 			files = (
 				EA6235841922C2ED00D4FB19 /* BaseViewController.m in Sources */,
 				EA62358A1922E0A200D4FB19 /* DZLViewControllerAdditions.m in Sources */,
+				EAB77CDD1953156F00C9B48E /* RootViewController.m in Sources */,
 				EA6235A11925708D00D4FB19 /* NSObject+DZLObjcAdditions.m in Sources */,
+				EAEBE8EC1953063F00562901 /* BaseViewControllerAdditions.m in Sources */,
 				EA4E92131922B43C00BE01DE /* main.m in Sources */,
 				EA4E921D1922B43C00BE01DE /* DZLViewController.m in Sources */,
 				EA4E92171922B43C00BE01DE /* DZLAppDelegate.m in Sources */,

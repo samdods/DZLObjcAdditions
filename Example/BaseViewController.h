@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Sam Dods. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RootViewController.h"
 
-@interface BaseViewController : UIViewController
+@interface BaseViewController : RootViewController
 
 - (BOOL)isSomething;
 
