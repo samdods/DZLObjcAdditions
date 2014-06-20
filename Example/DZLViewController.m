@@ -50,6 +50,10 @@
   NSLog(@"%d %d %d", should1, should2, isSomething);
   
   NSLog(@"%@", self.class.sharedInstance.myObjects);
+  
+  BaseViewController *baseViewController = [[BaseViewController alloc] initWithNibName:nil bundle:nil];
+  
+  baseViewController = nil;
 }
 
 - (void)doSomethingElseMagic

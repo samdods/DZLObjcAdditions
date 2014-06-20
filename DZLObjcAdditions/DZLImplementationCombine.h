@@ -10,13 +10,12 @@
 #import "DZLSuper.h"
 
 #define dzlCombine(args) \
-({ id proxy = [DZLObjcAdditions proxyForObject:self class:self.class toForwardSelector:_cmd]; \
-[proxy args]; })
+({ [(typeof(self))[DZLObjcAdditions proxyForObject:self class:self.class toForwardSelector:_cmd] args]; })
 
 #define dzlCanCombine() \
 ({ [DZLObjcAdditions proxyForObject:self class:self.class respondsToSelector:_cmd]; })
 
-#define dzl_no_assert 37834
+extern NSInteger const dzl_no_assert;
 
 #define implementation_combine(klass, name, args...) \
 interface DZLImplementationCombine_ ## klass ## name : klass @end \

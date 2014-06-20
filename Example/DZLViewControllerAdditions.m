@@ -50,7 +50,7 @@
 @end
 
 
-@implementation_combine(DZLViewController, Example, dzl_no_assert)
+@implementation_combine(DZLViewController, Example)
 
 + (BOOL)shouldDoSomethingWithObject:(id)object
 {
@@ -67,6 +67,10 @@
   
   dzlSuper(viewDidLoad);
 }
+
+@end
+
+@implementation_combine(DZLViewController, ExampleNoAssert, dzl_no_assert)
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

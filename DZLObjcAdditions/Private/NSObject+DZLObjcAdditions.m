@@ -11,12 +11,13 @@
 #import "DZLClassSingleton.h"
 #import "DZLImplementationCombine.h"
 
+NSInteger const dzl_no_assert = 37834;
 static const void * const DZLObjcAdditionsSuperCountKey = &DZLObjcAdditionsSuperCountKey;
 
 @interface DZLObjcAdditions ()
 @property (nonatomic, strong) NSString *dzl_class_singleton;
 @property (nonatomic, strong) id object;
-@property (nonatomic, strong) Class class;
+@property (nonatomic, assign) Class class;
 @property (nonatomic, assign) SEL selector;
 @end
 
@@ -80,6 +81,11 @@ static const void * const DZLObjcAdditionsSuperCountKey = &DZLObjcAdditionsSuper
     [self modifySuperCountByDelta:1];
     [invocation invokeWithTarget:self.object];
     [self modifySuperCountByDelta:-1];
+  }
+  
+  NSString *name = NSStringFromSelector(self.selector);
+  if (![name isEqualToString:@"init"] && ![name rangeOfString:@"initWith"].location == 0) {
+    self.object = nil;
   }
 }
 

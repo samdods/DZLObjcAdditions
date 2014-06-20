@@ -14,6 +14,13 @@
 
 @implementation BaseViewController
 
+- (void)dealloc
+{
+  BOOL isSomething = [self isSomething];
+  
+  NSLog(@"in dealloc, isSomething: %@", isSomething ? @"YES" : @"NO");
+}
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];

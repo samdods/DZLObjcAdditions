@@ -12,6 +12,13 @@
 
 @implementation_combine(BaseViewController, Additions)
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+  self = dzlSuper(initWithNibName:nibNameOrNil bundle:nibBundleOrNil);
+  
+  return self;
+}
+
 - (void)viewDidLoad
 {
   dzlSuper(viewDidLoad);
