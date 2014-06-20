@@ -84,7 +84,7 @@ static const void * const DZLObjcAdditionsSuperCountKey = &DZLObjcAdditionsSuper
   }
   
   NSString *name = NSStringFromSelector(self.selector);
-  if (![name isEqualToString:@"init"] && ![name rangeOfString:@"initWith"].location == 0) {
+  if (![name isEqualToString:@"init"] && [name rangeOfString:@"initWith"].location != 0) {
     self.object = nil;
   }
 }
