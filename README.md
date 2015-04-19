@@ -52,7 +52,7 @@ The code passed into the `dzlSuper` macro should be exactly what you would send 
 
 Each method specified in an `@implementation_combine` must be implemented by the underlying class, otherwise an exception is raised (from a Foundation assertion). This is because it usually only makes sense to combine with a method that already exists.
 
-If you wish to avoid the assertion because you intentionally want to combine with a method that isn't implemented on the underlying class (because perhaps it will be at a later date), you can do so with by passing the `dzl_no_assert` parameter as follows:
+If you wish to avoid the assertion because you intentionally want to combine with a method that isn't implemented on the underlying class (because perhaps it will be at a later date), you can do so by passing the `dzl_no_assert` parameter as follows:
 
 ```objc
 @implementation_combine(MainViewController, CombinedAdditions, dzl_no_assert)
